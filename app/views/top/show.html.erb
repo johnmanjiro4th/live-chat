@@ -1,0 +1,47 @@
+<h1>ChatRoom</h1>
+
+<% if user_signed_in? %>
+  <div id="your_container">
+
+      <!-- チャットの外側部分① -->
+      <div id="bms_messages_container">
+          <!-- ヘッダー部分② -->
+          <div id="bms_chat_header">
+              <!--ステータス-->
+              <div id="bms_chat_user_status">
+                  <!--ステータスアイコン-->
+                  <div id="bms_status_icon">●</div>
+                  <!--ユーザー名-->
+                  <div id="bms_chat_user_name"><%= current_user.name %></div>
+              </div>
+          </div>
+
+          <!-- タイムライン部分③ -->
+      <div id="bms_messages">
+
+          <% @messages.each do |message| %>
+            <% if message.user.id == current_user.id %>
+              <% position = "bms_right" %>
+            <% else %>
+              <% position = "bms_left" %>
+            <% end %>
+            <div class="bms_message <%= position %>">
+              <div class="bms_message_box">
+                <div class="bms_message_content">
+                  <div class="bms_message_text"><%= message.content %></div>
+                </div>
+              </div>
+            </div>
+            <div class="bms_clear"></div><!-- 回り込みを解除（スタイルはcssで充てる） -->
+          <% end %>
+
+          <!-- テキストボックス、送信ボタン④ -->
+      </div>
+      <div id="bms_send">
+        <form>
+          <input id="chat-form" type="text" data-behavior="chat_post" class="bms_send_message">
+          <input id="user-id-value" type="hidden" value="<%= current_user.id %>">
+        </form>
+      </div>
+  </div>
+<% end %>
