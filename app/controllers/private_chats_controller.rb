@@ -1,12 +1,16 @@
 class PrivateChatsController < ApplicationController
   def show
-    @private_chat = PrivateChat.find(params[:id])
-    if @private_chat.user_1_id == current_user.id
-      @user_name = User.find(@private_chat.user_2_id).name
-    elsif @private_chat.user_2_id == current_user.id
-      @user_name = User.find(@private_chat.user_1_id).name
+    if PrivateChat.find_by(id: params[:id]).present?
+      @private_chat = PrivateChat.find(params[:id])
+      if @private_chat.user_1_id == current_user.id
+        @user_name = User.find(@private_chat.user_2_id).name
+      elsif @private_chat.user_2_id == current_user.id
+        @user_name = User.find(@private_chat.user_1_id).name
+      end
+      @messages = Message.where(private_chat_id: params[:id])
+    else
+      redirect_to users_path
     end
-    @messages = Message.where(private_chat_id: params[:id])
   end
 
   def create
