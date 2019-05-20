@@ -8,7 +8,7 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def post(data)
-    Message.create! content: data['message'], user_id: data['user_id']
+    Message.create! content: data['message'], user_id: data['user_id'], private_chat_id: data['chat_id']
     ActionCable.server.broadcast('chat_channel', data)
   end
 end

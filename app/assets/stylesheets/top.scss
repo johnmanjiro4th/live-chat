@@ -22,8 +22,8 @@ html {
 /* ヘッダー部分② */
 #bms_chat_header {
     padding: 6px;/*隙間調整*/
-    font-size: 16px;
-    height: 34px;
+    font-size: 25px;
+    height: 50px;
     background: #ddd;
     border: 1px solid #ccc;
 }
@@ -56,17 +56,22 @@ html {
     .bms_message {
         margin: 0px;
         padding: 0 14px;/*吹き出しがタイムラインの側面にひっつかない様に隙間を開ける*/
-        font-size: 16px;
+        font-size: 24px;
         word-wrap: break-word;/* 吹き出し内で自動で改行 */
         white-space: normal;/*指定widthに合わせて、文字を自動的に改行*/
     }
     .bms_message_box{
             margin-top: 20px;/*上下の吹き出しがひっつかない様に隙間を入れる*/
             max-width: 100%;/*文字が長くなった時に吹き出しがタイムラインからはみ出さない様にする*/
-            font-size: 16px;
+            font-size: 24px;
         }
         .bms_message_content{
             padding: 20px;/*文字や画像（コンテンツ）の外側に隙間を入れる*/
+        }
+        .bms_message_text {
+          margin-top: 8px;
+          font-size: 32px;
+          font-weight: bold;
         }
 
         /* メッセージ１（左側） */
@@ -128,7 +133,7 @@ html {
         border: 1px solid #ccc;
         border-radius: 4px;/*角丸*/
         text-align: left;/*文字を左寄せ*/
-        font-size: 25px;
+        font-size: 30px;
         box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2) inset;/*内側に影を入れてテキストエリアらしくした*/
         box-sizing: border-box;/*paddingとborderの要素の高さと幅の影響をなくす（要素に高さと幅を含める）*/
 

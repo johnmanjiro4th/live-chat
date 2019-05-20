@@ -1,5 +1,21 @@
 <% @users.each do |user| %>
   <ul>
-    <li><%= user.name %></li>
+    <li>
+      <%= user.name %>
+      <% unless user.id == current_user.id %>
+        <% if PrivateChat.find_by(user_1_id: current_user.id, user_2_id: user.id) || PrivateChat.find_by(user_2_id: current_user.id, user_1_id: user.id) %>
+          <% a = PrivateChat.find_by(user_1_id: current_user.id, user_2_id: user.id) %>
+          <% b = PrivateChat.find_by(user_2_id: current_user.id, user_1_id: user.id) %>
+          <% if a.present? %>
+            <% chat_room_id = a.id %>
+          <% elsif b.present? %>
+            <% chat_room_id = b.id %>
+          <% end %>
+          <%= link_to "トークルームへ行く", private_chat_path(chat_room_id) %>
+        <% else %>
+          <%= link_to "トークを始める", private_chats_path(user_1_id: current_user.id, user_2_id: user.id), method: :post %>
+        <% end %>
+      <% end %>
+    </li>
   </ul>
 <% end %>

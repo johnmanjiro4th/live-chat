@@ -1,3 +1,4 @@
 class Message < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
+  belongs_to :private_chat
 end

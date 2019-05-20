@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:index, :show]
   resources :messages, only: :create
+  resources :private_chats, only: [:show, :create]
 end
